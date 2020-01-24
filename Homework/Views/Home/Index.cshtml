@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    
+}
+
+<h2>Index</h2>
+
+<span class="my_cssstyle"> Here is body here  </span>
+<li>
+    <a href="@Url.Action("Index", "Good/GoodView")" class="elements">
+        <span>Goods</span>
+    </a>
+    <a href="@Url.Action("Index", "Category/CategoryView")" class="elements">
+        <span>Categories</span>
+    </a>
+    <a href="@Url.Action("Index", "Manufacturer/ManufacturerView")" class="elements">
+        <span>Manufacturers</span>
+    </a>
+</li>

@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewBag.Title = "GoodView";
+}
+
+<h2>GoodView</h2>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <td>
+                Id
+            </td>
+            <td>
+                Good
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var good in ViewBag.Goods)
+        {
+            <tr>
+                <td>
+                    @good.GoodId
+                </td>
+                <td>
+                    @good.GoodName
+                </td>
+                <td>
+                    @good.ToString().Substring(8)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
