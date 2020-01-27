@@ -1,4 +1,4 @@
-namespace DAL.Context
+namespace DAL.Context.Models
 {
     using System;
     using System.Collections.Generic;
@@ -6,32 +6,34 @@ namespace DAL.Context
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("Sale")]
-    public partial class Sale
+    [Table("Good")]
+    public partial class Good
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Sale()
+        public Good()
         {
             SalePos = new HashSet<SalePos>();
         }
 
-        public int SaleId { get; set; }
-
-        public int NumberSale { get; set; }
+        public int GoodId { get; set; }
 
         [Required]
-        [StringLength(10)]
-        public string UserPhone { get; set; }
+        [StringLength(100)]
+        public string GoodName { get; set; }
 
-        [Required]
-        [StringLength(80)]
-        public string UserEmail { get; set; }
+        public int? ManufacturerId { get; set; }
 
-        [Column(TypeName = "date")]
-        public DateTime DateSale { get; set; }
+        public int? CategoryId { get; set; }
 
         [Column(TypeName = "money")]
-        public decimal Summa { get; set; }
+        public decimal Price { get; set; }
+
+        [Column(TypeName = "numeric")]
+        public decimal GoodCount { get; set; }
+
+        public virtual Category Category { get; set; }
+
+        public virtual Manufacturer Manufacturer { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SalePos> SalePos { get; set; }

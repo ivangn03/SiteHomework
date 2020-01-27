@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BLL.DTO;
-using DAL.Context;
+using DAL.Context.Models;
 using DAL.Repositories;
 
 namespace BLL.Services

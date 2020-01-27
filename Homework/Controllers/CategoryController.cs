@@ -14,9 +14,10 @@ namespace Homework.Controllers
     {
         IService<CategoryDTO> service = new CategoryService(new CategoriesRepository(new ShopAdo()));
         // GET: Category
-        public ActionResult CategoryView()
+        public ActionResult CategoryView(int id = 1)
         {
-            ViewBag.Categories = service.GetAll();
+            ViewBag.PageCount = (int)Math.Ceiling(service.GetAll().Count() / 4.0);
+            ViewBag.Categories = service.GetAll().Skip((id-1)*4).Take(4).ToList();
             return View();
         }
     }

@@ -14,9 +14,10 @@ namespace Homework.Controllers
     {
         IService<GoodDTO> service = new GoodService(new GoodRepository(new ShopAdo()));
         // GET: Good
-        public ActionResult GoodView()
+        public ActionResult GoodView(int id = 1)
         {
-            ViewBag.Goods = service.GetAll();
+            ViewBag.PageCount = (int)Math.Ceiling(service.GetAll().Count() / 4.0);
+            ViewBag.Goods = service.GetAll().Skip((id - 1) * 4).Take(4).ToList();
             return View();
         }
     }

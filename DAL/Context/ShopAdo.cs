@@ -4,6 +4,7 @@ namespace DAL.Context
     using System.Data.Entity;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
+    using DAL.Context.Models;
 
     public partial class ShopAdo : DbContext
     {

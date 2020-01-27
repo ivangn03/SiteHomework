@@ -1,4 +1,4 @@
-﻿using DAL.Context;
+﻿using DAL.Context.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;

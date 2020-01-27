@@ -14,9 +14,10 @@ namespace Homework.Controllers
     {
         IService<ManufacturerDTO> service = new ManufacturerService(new ManufacturerRepository(new ShopAdo()));
         // GET: Manufacturer
-        public ActionResult ManufacturerView()
+        public ActionResult ManufacturerView(int id = 1)
         {
-            ViewBag.Manufacturers = service.GetAll();
+            ViewBag.PageCount = (int)Math.Ceiling(service.GetAll().Count() / 4.0);
+            ViewBag.Manufacturers = service.GetAll().Skip((id - 1) * 4).Take(4).ToList();
             return View();
         }
     }
