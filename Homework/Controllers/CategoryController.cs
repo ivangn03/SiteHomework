@@ -17,7 +17,7 @@ namespace Homework.Controllers
         public ActionResult CategoryView(int id = 1)
         {
             ViewBag.PageCount = (int)Math.Ceiling(service.GetAll().Count() / 4.0);
-            ViewBag.Categories = service.GetAll().Skip((id-1)*4).Take(4).ToList();
+            ViewBag.Categories = service.GetAll().OrderBy(x=>x.CategoryId).Skip((id-1)*4).Take(4).ToList();
             return View();
         }
     }

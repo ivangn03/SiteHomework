@@ -34,7 +34,7 @@ namespace DAL.Repositories
             return dbSet.Find(id);
         }
 
-        public IEnumerable<T> GetAll()
+        public IQueryable<T> GetAll()
         {
             return dbSet;
         }

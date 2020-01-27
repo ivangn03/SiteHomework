@@ -17,7 +17,7 @@ namespace Homework.Controllers
         public ActionResult GoodView(int id = 1)
         {
             ViewBag.PageCount = (int)Math.Ceiling(service.GetAll().Count() / 4.0);
-            ViewBag.Goods = service.GetAll().Skip((id - 1) * 4).Take(4).ToList();
+            ViewBag.Goods = service.GetAll().OrderBy(x => x.GoodId).Skip((id - 1) * 4).Take(4).ToList();
             return View();
         }
     }

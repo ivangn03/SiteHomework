@@ -40,9 +40,10 @@ namespace BLL.Services
             return mapper.Map<DTO>(repository.Get(id));
         }
 
-        public IEnumerable<DTO> GetAll()
+        public IQueryable<DTO> GetAll()
         {
-            return repository.GetAll().Select(x => mapper.Map<DTO>(x));
+            //.Select(x => mapper.Map<DTO>(x));
+            return mapper.ProjectTo<DTO>(repository.GetAll());
         }
 
         public void SaveAll()

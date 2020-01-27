@@ -10,7 +10,7 @@ namespace DAL.Repositories
     {
         void AddOrUpdate(T data);
         T Delete(T data);
-        IEnumerable<T> GetAll();
+        IQueryable<T> GetAll();
         T Get(int id);
         void SaveAll();
     }
