@@ -4,9 +4,17 @@
 }
 
 <h2>CategoryView</h2>
-<a href="@Url.Action("Index", "Home/Index")" class="elements">
-    <span>Home</span>
-</a>
+<div>
+    <a href="@Url.Action("Index", "Home/Index")" class="elements">
+        <span>Home</span>
+    </a>
+    @if(ViewBag.PageCount > 1) { 
+        for (int i = 0; i < ViewBag.PageCount; i++)
+        {
+        @Html.ActionLink($"{i + 1}","CategoryView", new {@id = ++i }, new {@class = "btn btn-success" })
+        }
+    }
+</div>
 <table class="table table-bordered">
     <thead>
         <tr>
