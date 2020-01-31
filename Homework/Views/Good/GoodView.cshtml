@@ -5,9 +5,7 @@
 
 <h2>GoodView</h2>
 <div>
-    <a href="@Url.Action("Index", "Home/Index")" class="elements">
-        <span>Home</span>
-    </a>
+    
     @if (ViewBag.PageCount > 1)
     {
         for (int i = 0; i < ViewBag.PageCount; i++)
@@ -19,28 +17,45 @@
 <table class="table table-bordered">
     <thead>
         <tr>
-            <td>
+            <th>
                 Id
-            </td>
-            <td>
+            </th>
+            <th>
                 Good
-            </td>
+            </th>
+            <th>
+                Remove
+            </th>
         </tr>
     </thead>
     <tbody>
         @foreach(var good in ViewBag.Goods)
         {
-            <tr>
-                <td>
-                    @good.GoodId
-                </td>
-                <td>
-                    @good.GoodName
-                </td>
-                <td>
-                    @good.ToString().Substring(8)
-                </td>
-            </tr>
+        <tr>
+            <td>
+                @good.GoodId
+            </td>
+            <td>
+                @good.GoodName
+            </td>
+            <td>
+                 @Html.ActionLink("DELETE", "DELETE", new { @id = good.GoodId }, new { @class = "btn btn-danger" })
+            </td>
+        </tr>
         }
     </tbody>
 </table>
+<li>
+    <a href="@Url.Action("Index", "Home/Index")" class="elements">
+        <span>Home</span>
+    </a>
+    <a href="@Url.Action("Index", "Good/GoodView")" class="elements">
+        <span>Goods</span>
+    </a>
+    <a href="@Url.Action("Index", "Category/CategoryView")" class="elements">
+        <span>Categories</span>
+    </a>
+    <a href="@Url.Action("Index", "Manufacturer/ManufacturerView")" class="elements">
+        <span>Manufacturers</span>
+    </a>
+</li>

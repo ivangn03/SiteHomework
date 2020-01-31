@@ -5,9 +5,7 @@
 
 <h2>CategoryView</h2>
 <div>
-    <a href="@Url.Action("Index", "Home/Index")" class="elements">
-        <span>Home</span>
-    </a>
+   
     @if(ViewBag.PageCount > 1) { 
         for (int i = 0; i < ViewBag.PageCount; i++)
         {
@@ -18,25 +16,45 @@
 <table class="table table-bordered">
     <thead>
         <tr>
-            <td>
+            <th>
                 Id
-            </td>
-            <td>
+            </th>
+            <th>
                 Category
-            </td>
+            </th>
+            <th>
+                Remove
+            </th>
         </tr>
     </thead>
     <tbody>
         @foreach (var category in ViewBag.Categories)
         {
-            <tr>
-                <td>
-                    @category.CategoryId
-                </td>
-                <td>
-                    @category.CategoryName
-                </td>
-            </tr>
+        <tr>
+            <td>
+                @category.CategoryId
+            </td>
+            <td>
+                @category.CategoryName
+            </td>
+            <td>
+                @Html.ActionLink("DELETE", "DELETE", new { @id = category.CategoryId }, new { @class = "btn btn-danger" })
+            </td>
+        </tr>
         }
     </tbody>
 </table>
+<li>
+    <a href="@Url.Action("Index", "Home/Index")" class="elements">
+        <span>Home</span>
+    </a>
+    <a href="@Url.Action("Index", "Good/GoodView")" class="elements">
+        <span>Goods</span>
+    </a>
+    <a href="@Url.Action("Index", "Category/CategoryView")" class="elements">
+        <span>Categories</span>
+    </a>
+    <a href="@Url.Action("Index", "Manufacturer/ManufacturerView")" class="elements">
+        <span>Manufacturers</span>
+    </a>
+</li>

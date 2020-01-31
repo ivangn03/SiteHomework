@@ -26,6 +26,7 @@ namespace DAL.Repositories
         public T Delete(T data)
         {
             dbSet.Remove(data);
+            SaveAll();
             return data;
         }
 

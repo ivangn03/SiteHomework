@@ -31,8 +31,8 @@ namespace BLL.Services
 
         public DTO Delete(DTO data)
         {
-            repository.Delete(repository.Get(Int32.Parse((string)(data.GetType().GetProperty(data.ToString().Substring(8, data.ToString().Length - 3)) + "Id"))));//Викликає Id поле із DTO. 
-            return data;
+            repository.Delete(repository.Get(Convert.ToInt32( data.GetType().GetProperty(data.ToString().Substring(8, data.ToString().Length - 11) + "Id").GetValue(data))));//Викликає Id поле із DTO.
+            return data; 
         }
 
         public DTO Get(int id)

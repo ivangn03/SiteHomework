@@ -16,9 +16,14 @@ namespace Homework.Controllers
         // GET: Category
         public ActionResult CategoryView(int id = 1)
         {
-            ViewBag.PageCount = (int)Math.Ceiling(service.GetAll().Count() / 4.0);
-            ViewBag.Categories = service.GetAll().OrderBy(x=>x.CategoryId).Skip((id-1)*4).Take(4).ToList();
+            ViewBag.PageCount = (int)Math.Ceiling(service.GetAll().Count() / 6.0);
+            ViewBag.Categories = service.GetAll().OrderBy(x=>x.CategoryId).Skip((id-1)*6).Take(6).ToList();
             return View();
+        }
+        public ActionResult Delete(int id)
+        {
+            service.Delete(service.Get(id));
+            return RedirectToAction("CategoryView");
         }
     }
 }
