@@ -1,50 +1,30 @@
 ﻿
 @{
     ViewBag.Title = "ManufacturerView";
+    var options = new AjaxOptions
+    {
+        UpdateTargetId = "result",
+    };
 }
 
 <h2>ManufacturerView</h2>
-<div>
-   
+
+<div id="paging">
     @if (ViewBag.PageCount > 1)
     {
         for (int i = 0; i < ViewBag.PageCount; i++)
         {
-            @Html.ActionLink($"{i + 1}", "ManufacturerView", new { @id = i + 1 }, new { @class = "btn btn-success" })
+
+
+            @Ajax.ActionLink($"{i + 1}", "ManufacturerTable", new { id = @i + 1 }, options, new { @class = "btn btn-success" });
         }
     }
 </div>
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <th>
-                Id
-            </th>
-            <th>
-                Manufacturer
-            </th>
-            <th>
-                Remove
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var manufacturer in ViewBag.Manufacturers)
-        {
-            <tr>
-                <td>
-                    @manufacturer.ManufacturerId
-                </td>
-                <td>
-                    @manufacturer.ManufacturerName
-                </td>
-                <td>
-                    @Html.ActionLink("DELETE","DELETE", new { @id = manufacturer.ManufacturerId}, new { @class = "btn btn-danger" })
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+
+<div id="result">
+
+</div>
+
 <li>
     <a href="@Url.Action("Index", "Home/Index")" class="elements">
         <span>Home</span>

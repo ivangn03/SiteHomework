@@ -1,0 +1,31 @@
+﻿@model IEnumerable<BLL.DTO.ManufacturerDTO>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>
+                Id
+            </th>
+            <th>
+                Manufacturer
+            </th>
+            <th>
+                Remove
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var manufacturer in Model)
+        {
+        <tr>
+            <td>
+                @manufacturer.ManufacturerId
+            </td>
+            <td>
+                @manufacturer.ManufacturerName
+            </td>
+            <td>@Html.ActionLink("DELETE", "DELETE", new { @id = manufacturer.ManufacturerId }, new { @class = "btn btn-danger" })</td>
+        </tr>
+        }
+    </tbody>
+</table>

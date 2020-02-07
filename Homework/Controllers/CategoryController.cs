@@ -25,5 +25,10 @@ namespace Homework.Controllers
             service.Delete(service.Get(id));
             return RedirectToAction("CategoryView");
         }
+        public PartialViewResult CategoryTable(int id = 1)
+        {
+            var categories = service.GetAll().OrderBy(x => x.CategoryId).Skip((id - 1) * 6).Take(6).ToList();
+            return PartialView(categories);
+        }
     }
 }

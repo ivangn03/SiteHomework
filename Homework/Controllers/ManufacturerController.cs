@@ -17,13 +17,17 @@ namespace Homework.Controllers
         public ActionResult ManufacturerView(int id = 1)
         {
             ViewBag.PageCount = (int)Math.Ceiling(service.GetAll().Count() / 6.0);
-            ViewBag.Manufacturers = service.GetAll().OrderBy(x => x.ManufacturerId).Skip((id - 1) * 6).Take(6).ToList();
             return View();
         }
         public ActionResult Delete(int id)
         {
             service.Delete(service.Get(id));
             return RedirectToAction("ManufacturerView");
+        }
+        public PartialViewResult ManufacturerTable(int id = 1)
+        {
+            var manufacturers= service.GetAll().OrderBy(x => x.ManufacturerId).Skip((id - 1) * 6).Take(6).ToList();
+            return PartialView(manufacturers);
         }
     }
 }

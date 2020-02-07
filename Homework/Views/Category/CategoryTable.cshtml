@@ -1,0 +1,33 @@
+﻿@model IEnumerable<BLL.DTO.CategoryDTO>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>
+                Id
+            </th>
+            <th>
+                Category
+            </th>
+            <th>
+                Remove
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var category in Model)
+        {
+            <tr>
+                <td>
+                    @category.CategoryId
+                </td>
+                <td>
+                    @category.CategoryName
+                </td>
+                <td>
+                    @Html.ActionLink("DELETE", "DELETE", new { @id = category.CategoryId }, new { @class = "btn btn-danger" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

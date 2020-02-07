@@ -1,50 +1,33 @@
 ﻿
 @{
     ViewBag.Title = "GoodView";
+    var options = new AjaxOptions
+    {
+        UpdateTargetId = "result3",
+    };
 }
 
+
 <h2>GoodView</h2>
-<div>
-    
+
+<div id="paging">
     @if (ViewBag.PageCount > 1)
     {
         for (int i = 0; i < ViewBag.PageCount; i++)
         {
-            @Html.ActionLink($"{i + 1}", "GoodView", new { @id = i + 1 }, new { @class = "btn btn-success" })
+
+
+            @Ajax.ActionLink($"{i + 1}", "GoodTable", new { id = @i + 1 }, options, new { @class = "btn btn-success" });
         }
     }
     </div>
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <th>
-                Id
-            </th>
-            <th>
-                Good
-            </th>
-            <th>
-                Remove
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach(var good in ViewBag.Goods)
-        {
-        <tr>
-            <td>
-                @good.GoodId
-            </td>
-            <td>
-                @good.GoodName
-            </td>
-            <td>
-                 @Html.ActionLink("DELETE", "DELETE", new { @id = good.GoodId }, new { @class = "btn btn-danger" })
-            </td>
-        </tr>
-        }
-    </tbody>
-</table>
+
+<div id="result3">
+
+</div>
+
+
+
 <li>
     <a href="@Url.Action("Index", "Home/Index")" class="elements">
         <span>Home</span>

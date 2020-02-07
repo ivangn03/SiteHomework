@@ -1,0 +1,22 @@
+﻿@model IEnumerable<BLL.DTO.GoodDTO>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>GoodId</th>
+            <th>GoodName</th>
+            <th>Delete</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var good in Model)
+        {
+            <tr>
+                <td>@good.GoodId</td>
+                <td>@good.GoodName</td>
+                <td>@Html.ActionLink("DELETE", "DELETE", new { @id = good.GoodId }, new { @class = "btn btn-danger" })</td>
+            </tr>
+        }
+    </tbody>
+</table>

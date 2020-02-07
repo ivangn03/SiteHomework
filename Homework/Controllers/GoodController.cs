@@ -17,13 +17,17 @@ namespace Homework.Controllers
         public ActionResult GoodView(int id = 1)
         {
             ViewBag.PageCount = (int)Math.Ceiling(service.GetAll().Count() / 6.0);
-            ViewBag.Goods = service.GetAll().OrderBy(x => x.GoodId).Skip((id - 1) * 6).Take(6).ToList();
             return View();
         }
         public ActionResult Delete(int id)
         {
             service.Delete(service.Get(id));
             return RedirectToAction("GoodView");
+        }
+        public PartialViewResult GoodTable(int id = 1)
+        {
+            var goods = service.GetAll().OrderBy(x => x.GoodId).Skip((id - 1) * 6).Take(6).ToList();
+            return PartialView(goods);
         }
     }
 }
