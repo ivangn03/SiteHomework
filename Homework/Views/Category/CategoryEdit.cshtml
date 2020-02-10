@@ -1,0 +1,22 @@
+﻿@model BLL.DTO.CategoryDTO
+
+
+<div>
+    @using (Ajax.BeginForm("CategoryEdit", "Category", new AjaxOptions { HttpMethod = "Post", UpdateTargetId = "result2" }))
+    {
+        <p>
+            @Html.HiddenFor(x => x.CategoryId)
+        </p>
+        <p>
+            @Html.LabelFor(x => x.CategoryName)
+        </p>
+        <p>
+            @Html.ValidationMessageFor(x => x.CategoryName)
+        </p>
+        <p>
+            @Html.TextBoxFor(x => x.CategoryName)
+        </p>
+        <input type="submit" class="btn btn-default" />
+    }
+</div>
+

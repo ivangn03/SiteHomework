@@ -11,7 +11,7 @@ namespace BLL.Services
     public class GenericService<DTO,M> : IService<DTO> where DTO : class where M:class
     {
         IRepository<M> repository;
-        IMapper mapper;
+        protected IMapper mapper;
         public GenericService(IRepository<M> repository)
         {
             this.repository = repository;
@@ -24,7 +24,7 @@ namespace BLL.Services
             mapper = config.CreateMapper();
         }
 
-        public void Create(DTO data)
+        public void CreateOrUpdate(DTO data)
         {
             repository.AddOrUpdate(mapper.Map<M>(data));
         }

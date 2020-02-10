@@ -1,0 +1,24 @@
+﻿@model BLL.DTO.GoodDTO
+
+
+<div>
+    @using (Ajax.BeginForm("GoodEdit", "Good", new AjaxOptions { HttpMethod = "Post", UpdateTargetId = "result3" }))
+    {
+        <p>
+            @Html.HiddenFor(x => x.GoodId)
+        </p>
+        <p>
+            @Html.LabelFor(x => x.GoodName)
+        </p>
+        <p>
+            @Html.ValidationMessageFor(x => x.GoodName)
+        </p>
+        <p>
+            @Html.TextBoxFor(x => x.GoodName)
+        </p>
+       
+        <input type="submit" class="btn btn-default" />
+    }
+</div>
+
+

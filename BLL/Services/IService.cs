@@ -8,7 +8,7 @@ namespace BLL.Services
 {
     public interface IService <T> where T : class
     {
-      void Create(T data);
+      void CreateOrUpdate(T data);
       T Delete(T data);
       IQueryable<T> GetAll();
       T Get(int id);

@@ -1,7 +1,5 @@
 ﻿using BLL.DTO;
 using BLL.Services;
-using DAL.Context;
-using DAL.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,13 +10,18 @@ namespace Homework.Controllers
 {
     public class ManufacturerController : Controller
     {
-        IService<ManufacturerDTO> service = new ManufacturerService(new ManufacturerRepository(new ShopAdo()));
+        IService<ManufacturerDTO> service;
+        public ManufacturerController(IService<ManufacturerDTO> service)
+        {
+            this.service = service;
+        }
         // GET: Manufacturer
-        public ActionResult ManufacturerView(int id = 1)
+        public ActionResult ManufacturerView()
         {
             ViewBag.PageCount = (int)Math.Ceiling(service.GetAll().Count() / 6.0);
             return View();
         }
+        [HttpDelete]
         public ActionResult Delete(int id)
         {
             service.Delete(service.Get(id));

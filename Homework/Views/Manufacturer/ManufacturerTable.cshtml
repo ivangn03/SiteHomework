@@ -1,5 +1,12 @@
 ﻿@model IEnumerable<BLL.DTO.ManufacturerDTO>
 
+@{ 
+    var options = new AjaxOptions
+    {
+        UpdateTargetId = "result",
+        HttpMethod = "Delete"
+    };
+}
 <table class="table table-bordered">
     <thead>
         <tr>
@@ -24,7 +31,9 @@
             <td>
                 @manufacturer.ManufacturerName
             </td>
-            <td>@Html.ActionLink("DELETE", "DELETE", new { @id = manufacturer.ManufacturerId }, new { @class = "btn btn-danger" })</td>
+            <td>
+                @Ajax.ActionLink("DELETE", "DELETE", new { @id = manufacturer.ManufacturerId }, options, new { @class = "btn btn-danger" })
+            </td>
         </tr>
         }
     </tbody>

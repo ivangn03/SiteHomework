@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Homework.Infrastucture;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,6 +14,7 @@ namespace Homework
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            DependencyResolver.SetResolver(new MyDR());
         }
     }
 }

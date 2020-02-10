@@ -1,22 +1,46 @@
 ﻿@model IEnumerable<BLL.DTO.GoodDTO>
-
+@{ 
+    var options = new AjaxOptions
+    {
+        UpdateTargetId = "result3",
+        HttpMethod = "Delete"
+    };
+    var options2 = new AjaxOptions
+    {
+        UpdateTargetId = "result3",
+    };
+}
 <table class="table table-bordered">
     <thead>
         <tr>
             <th>GoodId</th>
             <th>GoodName</th>
+            <th>Category</th>
+            <th>Manufacturer</th>
             <th>Delete</th>
+            <th>Edit</th>
 
         </tr>
     </thead>
     <tbody>
         @foreach (var good in Model)
         {
-            <tr>
-                <td>@good.GoodId</td>
-                <td>@good.GoodName</td>
-                <td>@Html.ActionLink("DELETE", "DELETE", new { @id = good.GoodId }, new { @class = "btn btn-danger" })</td>
-            </tr>
+        <tr>
+            <td>@good.GoodId</td>
+            <td>@good.GoodName</td>
+            <td>
+                @good.ManufacturerName
+            </td>
+            <td>
+                @good.CategoryName
+            </td>
+            <td>
+                @Ajax.ActionLink("DELETE", "DELETE", new { @id = good.GoodId }, options, new { @class = "btn btn-danger" })
+            </td>
+            <td>
+                @Ajax.ActionLink("Edit", "GoodEdit", new { @id = good.GoodId }, options2, new { @class = "btn btn-success" })
+            </td>
+        </tr>
         }
     </tbody>
 </table>
