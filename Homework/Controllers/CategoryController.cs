@@ -35,6 +35,12 @@ namespace Homework.Controllers
      
         public PartialViewResult CategoryEdit(int id = 1)
         {
+            if (id < 0)
+            {
+                CategoryDTO createDTO = new CategoryDTO();
+                service.CreateOrUpdate(createDTO);
+                return PartialView(createDTO);
+            }
             CategoryDTO category = service.Get(id);
             return PartialView(category);
         }

@@ -1,0 +1,23 @@
+﻿
+@model BLL.DTO.ManufacturerDTO
+
+
+<div>
+    @using (Ajax.BeginForm("ManufacturerEdit", "Manufacturer", new AjaxOptions { HttpMethod = "Post", UpdateTargetId = "result" }))
+    {
+        <p>
+            @Html.HiddenFor(x => x.ManufacturerId)
+        </p>
+        <p>
+            @Html.LabelFor(x => x.ManufacturerName)
+        </p>
+        <p>
+            @Html.ValidationMessageFor(x => x.ManufacturerName)
+        </p>
+        <p>
+            @Html.TextBoxFor(x => x.ManufacturerName)
+        </p>
+        <input type="submit" class="btn btn-default" />
+    }
+</div>
+

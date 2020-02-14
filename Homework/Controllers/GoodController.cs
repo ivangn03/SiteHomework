@@ -5,16 +5,22 @@ using System.Web;
 using System.Web.Mvc;
 using BLL.DTO;
 using BLL.Services;
+using Homework.Models;
 
 namespace Homework.Controllers
 {
     public class GoodController : Controller
     {
         IService<GoodDTO> service;
+        IService<ManufacturerDTO> service2;
+        IService<CategoryDTO> service3;
+        GoodViewModel goodViewModel;
         // GET: Good
-        public GoodController(IService<GoodDTO> service)
+        public GoodController(IService<GoodDTO> service, IService<ManufacturerDTO> service2, IService<CategoryDTO> service3)
         {
             this.service = service;
+            this.service2 = service2;
+            this.service3 = service3;
         }
         public ActionResult GoodView()
         {
@@ -34,8 +40,48 @@ namespace Homework.Controllers
         }
         public PartialViewResult GoodEdit(int id = 1)
         {
+            var manufacturers = service2.GetAll();
+            var categories = service3.GetAll();
+            if (id < 0)
+            {
+                GoodDTO createDTO = new GoodDTO();
+                service.CreateOrUpdate(createDTO);
+                goodViewModel = new GoodViewModel
+                {
+                    Good = createDTO,
+                    Category = categories.ToList().Select(category => new SelectListItem
+                    {
+                        Value = category.CategoryId.ToString(),
+                        Text = category.CategoryName
+                    }),
+                    Manufacturer = manufacturers.ToList().Select(manufacturer => new SelectListItem
+                    {
+                        Value = manufacturer.ManufacturerId.ToString(),
+                        Text = manufacturer.ManufacturerName
+                    }
+
+                ),
+                };
+                return PartialView(goodViewModel);
+            }
             GoodDTO good = service.Get(id);
-            return PartialView(good);
+            goodViewModel = new GoodViewModel
+            {
+                Good = good,
+                Category = categories.ToList().Select(category => new SelectListItem
+                {
+                    Value = category.CategoryId.ToString(),
+                    Text = category.CategoryName
+                }),
+                Manufacturer = manufacturers.ToList().Select(manufacturer => new SelectListItem
+                {
+                    Value = manufacturer.ManufacturerId.ToString(),
+                    Text = manufacturer.ManufacturerName
+                }
+               
+                ),
+            };
+            return PartialView(goodViewModel);
         }
         [HttpPost]
         public ActionResult GoodEdit(GoodDTO good)

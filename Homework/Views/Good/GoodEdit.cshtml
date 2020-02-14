@@ -1,22 +1,29 @@
-﻿@model BLL.DTO.GoodDTO
+﻿@model Homework.Models.GoodViewModel
 
 
 <div>
     @using (Ajax.BeginForm("GoodEdit", "Good", new AjaxOptions { HttpMethod = "Post", UpdateTargetId = "result3" }))
     {
         <p>
-            @Html.HiddenFor(x => x.GoodId)
+            @Html.HiddenFor(x => x.Good.GoodId)
         </p>
         <p>
-            @Html.LabelFor(x => x.GoodName)
+            @Html.LabelFor(x => x.Good.GoodName)
         </p>
         <p>
-            @Html.ValidationMessageFor(x => x.GoodName)
+            @Html.ValidationMessageFor(x => x.Good.GoodName)
         </p>
         <p>
-            @Html.TextBoxFor(x => x.GoodName)
+            @Html.TextBoxFor(x => x.Good.GoodName)
         </p>
-       
+        <p>
+
+            @Html.DropDownListFor(model => model.Good.CategoryId, Model.Category)
+        </p>
+        <p>
+
+            @Html.DropDownListFor(model => model.Good.ManufacturerId, Model.Manufacturer)
+        </p>
         <input type="submit" class="btn btn-default" />
     }
 </div>

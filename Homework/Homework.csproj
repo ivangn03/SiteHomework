@@ -252,6 +252,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastucture\MyDR.cs" />
+    <Compile Include="Models\GoodViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -279,6 +280,7 @@
     <Content Include="Views\Manufacturer\ManufacturerTable.cshtml" />
     <Content Include="Views\Category\CategoryEdit.cshtml" />
     <Content Include="Views\Good\GoodEdit.cshtml" />
+    <Content Include="Views\Manufacturer\ManufacturerEdit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -288,7 +290,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BLL\BLL.csproj">

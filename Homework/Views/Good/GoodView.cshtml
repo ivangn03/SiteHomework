@@ -20,7 +20,8 @@
             @Ajax.ActionLink($"{i + 1}", "GoodTable", new { id = @i + 1 }, options, new { @class = "btn btn-success" });
         }
     }
-    </div>
+    @Ajax.ActionLink("Add", "GoodEdit", new { @id = -1 }, options, new { @class = "btn btn-success" })
+</div>
 
 <div id="result3">
 
