@@ -1,0 +1,39 @@
+﻿@model Homework.Models.UserModel
+@{
+                Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+</head>
+<body>
+    <center>
+        <div>
+            <h2>Login page</h2>
+            @using (Html.BeginForm())
+            {
+
+                @Html.ValidationSummary(true)
+                <p>
+                    @Html.LabelFor(x => x.Login)
+                </p> 
+                <p>
+                @Html.EditorFor(x => x.Login)
+                </p>
+                <p>
+                @Html.LabelFor(x => x.Password)
+                </p>
+                <p>
+                @Html.EditorFor(x => x.Password)
+                </p>
+                <input type="submit" />
+            }
+        </div>
+    </center>
+</body>
+</html>
+

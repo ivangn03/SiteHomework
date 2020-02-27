@@ -15,6 +15,7 @@ namespace Homework
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             DependencyResolver.SetResolver(new MyDR());
+            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
         }
     }
 }

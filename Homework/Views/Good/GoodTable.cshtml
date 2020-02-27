@@ -17,10 +17,12 @@
             <th>GoodName</th>
             <th>Manufacturer</th>
             <th>Category</th>
-            <th>Delete</th>
-            <th>Edit</th>
-
-        </tr>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <th>Delete</th>
+                <th>Edit</th>
+            }
+            </tr>
     </thead>
     <tbody>
         @foreach (var good in Model)
@@ -34,12 +36,14 @@
             <td>
                 @good.CategoryName
             </td>
+            @if(User.Identity.IsAuthenticated){
             <td>
                 @Ajax.ActionLink("DELETE", "DELETE", new { @id = good.GoodId }, options, new { @class = "btn btn-danger" })
             </td>
             <td>
                 @Ajax.ActionLink("Edit", "GoodEdit", new { @id = good.GoodId }, options2, new { @class = "btn btn-success" })
             </td>
+            }
         </tr>
         }
     </tbody>

@@ -27,6 +27,7 @@ namespace Homework.Controllers
             ViewBag.PageCount = (int)Math.Ceiling(service.GetAll().Count() / 6.0);
             return View();
         }
+        [Authorize]
         [HttpDelete]
         public ActionResult Delete(int id)
         {
@@ -38,6 +39,8 @@ namespace Homework.Controllers
             var goods = service.GetAll().OrderBy(x => x.GoodId).Skip((id - 1) * 6).Take(6).ToList();
             return PartialView(goods);
         }
+
+        [Authorize]
         public PartialViewResult GoodEdit(int id = 1)
         {
             var manufacturers = service2.GetAll();
@@ -83,6 +86,7 @@ namespace Homework.Controllers
             };
             return PartialView(goodViewModel);
         }
+        [Authorize]
         [HttpPost]
         public ActionResult GoodEdit(GoodDTO good)
         {

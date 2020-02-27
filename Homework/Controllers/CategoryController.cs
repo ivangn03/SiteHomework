@@ -21,6 +21,7 @@ namespace Homework.Controllers
             ViewBag.PageCount = (int)Math.Ceiling(service.GetAll().Count() / 6.0);
             return View();
         }
+        [Authorize]
         [HttpDelete]
         public ActionResult Delete(int id)
         {
@@ -32,7 +33,7 @@ namespace Homework.Controllers
             var categories = service.GetAll().OrderBy(x => x.CategoryId).Skip((id - 1) * 6).Take(6).ToList();
             return PartialView(categories);
         }
-     
+        [Authorize]
         public PartialViewResult CategoryEdit(int id = 1)
         {
             if (id < 0)
@@ -44,6 +45,7 @@ namespace Homework.Controllers
             CategoryDTO category = service.Get(id);
             return PartialView(category);
         }
+        [Authorize]
         [HttpPost]
         public ActionResult CategoryEdit(CategoryDTO category)
         {
